@@ -1,0 +1,143 @@
+
+# **Sentiment Analysis using TextBlob and VADER**
+
+## **Project Overview**
+
+This project performs **Sentiment Analysis** on text data using two popular Natural Language Processing (NLP) libraries: **TextBlob** and **VADER**. Sentiment analysis is the process of determining the sentiment (positive, negative, or neutral) expressed in a piece of text. This is useful in a variety of applications like analyzing customer reviews, social media posts, feedback, and more.
+
+In this project, we allow users to upload a `.txt` or `.csv` file containing text data (reviews). The tool will perform sentiment analysis using **TextBlob** and **VADER**, then provide a detailed report with sentiment labels and accuracy calculations (if true labels are available).
+
+## **Technologies Used**
+
+- **Python**
+- **TextBlob** (for polarity-based sentiment analysis)
+- **VADER** (for sentiment analysis using a lexicon and rule-based approach)
+- **Google Colab** (for running the analysis)
+- **NLTK** (Natural Language Toolkit for text processing)
+- **Pandas** (for data handling and CSV manipulation)
+- **Matplotlib** (optional: for visualizing results, if needed)
+
+## **Prerequisites**
+
+Before running the project, ensure that you have the following:
+- **Google Colab** (for running the code interactively in the cloud).
+- **Internet Access** (for downloading necessary packages and uploading files).
+
+## **Installation**
+
+This project can be run directly on **Google Colab**, which doesn’t require any local setup. However, if you choose to run it locally, follow the steps below to install the required packages:
+
+1. **Clone the repository (optional)**
+   - You can clone the repository if it’s available on GitHub (replace with the actual URL).
+   
+   ```bash
+   git clone https://github.com/username/sentiment-analysis.git
+   cd sentiment-analysis
+   ```
+
+2. **Install the required libraries**
+
+   If running locally, you’ll need to install the following libraries:
+
+   ```bash
+   pip install nltk textblob pandas
+   ```
+
+   Additionally, ensure that **NLTK** data packages are downloaded when running the code, or it will prompt to download them automatically:
+   - `punkt` (for tokenization)
+   - `vader_lexicon` (for VADER sentiment analysis)
+
+## **How to Use**
+
+### 1. **Upload the Text Data**
+
+The tool accepts two types of input files:
+- **Text file (`.txt`)**: A simple text file containing the reviews, each on a new line.
+- **CSV file (`.csv`)**: A CSV file with a column named `review` (which contains the text data) and an optional column `True_Sentiment` (containing the actual sentiment labels: positive, negative, or neutral).
+
+Once the script runs, you will be prompted to upload the file from your local machine.
+
+### 2. **Sentiment Analysis**
+
+Once the file is uploaded:
+- **TextBlob** and **VADER** perform sentiment analysis on each review.
+- Both methods classify the review as `positive`, `negative`, or `neutral` based on their analysis.
+
+### 3. **Result Display and Download**
+
+- After running the analysis, the script prints the sentiment predictions for the first 5 reviews from both TextBlob and VADER.
+- If the `True_Sentiment` labels are available in the CSV, the script calculates the **accuracy** of the sentiment predictions by comparing them to the actual labels.
+- A **CSV file** containing the original reviews and their corresponding sentiment labels from both **TextBlob** and **VADER** is generated. The file can be downloaded for further analysis.
+
+### 4. **Final Output**
+
+The output CSV will contain:
+- **Review**: The original review text.
+- **TextBlob Sentiment**: Sentiment predicted by TextBlob.
+- **VADER Sentiment**: Sentiment predicted by VADER.
+
+### Example of Input CSV:
+
+| Review                          | True_Sentiment |
+|----------------------------------|----------------|
+| I love this product!             | positive       |
+| This is the worst purchase ever. | negative       |
+| It's okay, not too great.        | neutral        |
+
+### Example of Output CSV:
+
+| Review                          | TextBlob Sentiment | VADER Sentiment |
+|----------------------------------|--------------------|-----------------|
+| I love this product!             | positive           | positive        |
+| This is the worst purchase ever. | negative           | negative        |
+| It's okay, not too great.        | neutral            | neutral         |
+
+---
+
+## **Explanation of Key Components**
+
+1. **TextBlob Sentiment Analysis**:
+   - **TextBlob** uses **polarity** to classify the sentiment. It assigns a sentiment score ranging from `-1` (negative) to `1` (positive). If the polarity score is:
+     - Positive (> 0), the sentiment is classified as `positive`.
+     - Negative (< 0), the sentiment is classified as `negative`.
+     - Zero, the sentiment is classified as `neutral`.
+
+2. **VADER Sentiment Analysis**:
+   - **VADER (Valence Aware Dictionary and sEntiment Reasoner)** uses a pre-trained lexicon to classify sentiment. It provides a **compound score** ranging from `-1` (negative) to `1` (positive). Sentiment classification:
+     - `positive`: if compound score ≥ 0.05
+     - `negative`: if compound score ≤ -0.05
+     - `neutral`: if compound score between -0.05 and 0.05
+
+3. **Accuracy Calculation**:
+   - If the dataset contains the true sentiment labels (i.e., `True_Sentiment` column in CSV), the tool will calculate the accuracy of the predictions made by both **TextBlob** and **VADER** by comparing them with the actual labels.
+
+## **Code Overview**
+
+1. **Data Upload**: The script prompts users to upload a `.txt` or `.csv` file.
+2. **Sentiment Analysis**: It applies both **TextBlob** and **VADER** sentiment analysis to each review.
+3. **Accuracy Calculation**: If true sentiment labels are available, it compares the predictions with actual labels and calculates accuracy.
+4. **Results**: The results, including sentiment predictions, are saved to a CSV file which can be downloaded by the user.
+
+## **Sample Output**
+
+```text
+Accuracy of TextBlob Sentiment Analysis: 85.00%
+Accuracy of VADER Sentiment Analysis: 83.00%
+
+Sentiment Analysis using TextBlob (first 5 reviews):
+Review: I love this product! => Sentiment: positive
+Review: This is the worst purchase ever. => Sentiment: negative
+Review: It's okay, not too great. => Sentiment: neutral
+Review: Excellent performance! => Sentiment: positive
+Review: Not as expected, very disappointed. => Sentiment: negative
+
+Sentiment Analysis using VADER (first 5 reviews):
+Review: I love this product! => Sentiment: positive
+Review: This is the worst purchase ever. => Sentiment: negative
+Review: It's okay, not too great. => Sentiment: neutral
+Review: Excellent performance! => Sentiment: positive
+Review: Not as expected, very disappointed. => Sentiment: negative
+```
+
+The output CSV will be available for download, containing the results for all reviews.
+
