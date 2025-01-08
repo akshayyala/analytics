@@ -27,19 +27,7 @@ Before running the project, ensure that you have the following:
 
 This project can be run directly on **Google Colab**, which doesn’t require any local setup. However, if you choose to run it locally, follow the steps below to install the required packages:
 
-1. **Clone the repository (optional)**
-   - You can clone the repository if it’s available on GitHub (replace with the actual URL).
-   
-   ```bash
-   git clone https://github.com/username/sentiment-analysis.git
-   cd sentiment-analysis
-   ```
-
-2. **Install the required libraries**
-
-   If running locally, you’ll need to install the following libraries:
-
-   ```bash
+-- install requried libraries
    pip install nltk textblob pandas
    ```
 
